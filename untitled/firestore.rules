@@ -1,0 +1,161 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() { return request.auth != null; }
+    function existing() { return resource.data; }
+    function incoming() { return request.resource.data; }
+    function isOwner(userId) { return request.auth.uid == userId; }
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    function isAdmin() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // User Profile Validation
+    function isValidUser(data) {
+      return data.keys().hasAll(['email', 'coins', 'role', 'createdAt']) &&
+             data.email is string && data.email.size() <= 256 &&
+             data.coins is number &&
+             data.role in ['user', 'admin'] &&
+             data.createdAt is string && data.createdAt.size() <= 100 &&
+             (!('bio' in data) || (data.bio is string && data.bio.size() <= 1000)) &&
+             (!('preferredClub' in data) || (data.preferredClub is string && data.preferredClub.size() <= 100)) &&
+             (!('nationality' in data) || (data.nationality is string && data.nationality.size() <= 100)) &&
+             (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 600000)) &&
+             (!('activeManager' in data) || (data.activeManager is string && data.activeManager.size() <= 100)) &&
+             (!('subscription' in data) || (data.subscription is string && data.subscription.size() <= 100)) &&
+             (!('promoCode' in data) || (data.promoCode is string && data.promoCode.size() <= 100)) &&
+             (!('lastClaim' in data) || (data.lastClaim is string));
+    }
+
+    match /users/{userId} {
+      // Must be signed in, and allowed to read any profile for leaderboards/friends
+      allow get: if isSignedIn() && isValidId(userId);
+      allow list: if isSignedIn();
+      
+      allow create: if isSignedIn() && isOwner(userId) && isValidId(userId) &&
+                       isValidUser(incoming()) && 
+                       incoming().role == 'user'; // Prevent self-assigning admin
+
+      allow update: if isSignedIn() && isValidId(userId) &&
+                       ((isOwner(userId) && isValidUser(incoming()) &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['coins', 'bio', 'preferredClub', 'nationality', 'photoURL', 'activeManager', 'subscription', 'promoCode', 'lastClaim']) &&
+                         incoming().role == existing().role) ||
+                        isAdmin());
+    }
+
+    // Squad Validation
+    function isValidSquadPlayer(data) {
+      return data.keys().hasAll(['playerId', 'playerName', 'acquiredAt', 'level']) &&
+             data.playerId is string && data.playerId.size() <= 128 &&
+             data.playerName is string && data.playerName.size() <= 128 &&
+             data.acquiredAt is string && data.acquiredAt.size() <= 100 &&
+             data.level is number;
+    }
+
+    match /users/{userId}/squad/{squadDocId} {
+      allow read: if isSignedIn() && (isOwner(userId) || isAdmin()) && isValidId(userId) && isValidId(squadDocId);
+      allow list: if isSignedIn() && (isOwner(userId) || isAdmin()) && isValidId(userId);
+      
+      allow create: if isSignedIn() && isOwner(userId) && isValidId(userId) && isValidId(squadDocId) &&
+                       isValidSquadPlayer(incoming()) &&
+                       exists(/databases/$(database)/documents/users/$(userId));
+
+      allow update: if isSignedIn() && (isOwner(userId) || isAdmin()) && isValidId(userId) && isValidId(squadDocId) &&
+                       isValidSquadPlayer(incoming()) &&
+                       (
+                         (incoming().diff(existing()).affectedKeys().hasOnly(['level', 'overall'])) ||
+                         (incoming().diff(existing()).affectedKeys().hasOnly(['onAuction', 'auctionId', 'onTrade']))
+                       );
+
+      allow delete: if isSignedIn() && isOwner(userId) && isValidId(userId) && isValidId(squadDocId);
+    }
+
+    // Pricing Package Validation
+    function isValidPricingPackage(data) {
+      return data.keys().hasAll(['name', 'price', 'description']) &&
+             data.name is string && data.name.size() <= 100 &&
+             data.price is number &&
+             data.description is string && data.description.size() <= 1000 &&
+             (!('features' in data) || (data.features is list && data.features.size() <= 20));
+    }
+
+    match /packs/{packId} {
+      // Publicly readable by signed in users
+      allow read: if isSignedIn() && isValidId(packId);
+      allow list: if isSignedIn();
+      // Only admins should write, but we don't have true admin token yet so deny write
+      allow write: if false; 
+    }
+
+    match /pricing_packages/{packageId} {
+      allow read: if isSignedIn() && isValidId(packageId);
+      allow list: if isSignedIn();
+      allow create, update: if isSignedIn() && isAdmin() && isValidId(packageId) && isValidPricingPackage(incoming());
+      allow delete: if isSignedIn() && isAdmin() && isValidId(packageId);
+    }
+
+    // Transaction Validation
+    function isValidTransaction(data) {
+      return data.keys().hasAll(['type', 'senderId', 'senderEmail', 'recipientId', 'recipientEmail', 'amount', 'participantIds', 'date']) &&
+             data.type is string && data.type.size() <= 50 &&
+             data.senderId is string && data.senderId.size() <= 128 &&
+             data.senderEmail is string && data.senderEmail.size() <= 256 &&
+             data.recipientId is string && data.recipientId.size() <= 128 &&
+             data.recipientEmail is string && data.recipientEmail.size() <= 256 &&
+             data.amount is number &&
+             data.participantIds is list && data.participantIds.size() <= 10 &&
+             (data.participantIds.size() == 0 || data.participantIds[0] is string) &&
+             data.date is string && data.date.size() <= 100;
+    }
+
+    match /transactions/{txId} {
+      // Users can only read transactions where they are a participant, or Admins
+      allow read: if isSignedIn() && isValidId(txId) && (request.auth.uid in resource.data.participantIds || isAdmin());
+      allow list: if isSignedIn() && (request.auth.uid in resource.data.participantIds || isAdmin());
+      
+      allow create: if isSignedIn() && isValidId(txId) &&
+                       isValidTransaction(incoming()) &&
+                       // Must be a participant
+                       request.auth.uid in incoming().participantIds;
+                       
+      // Transactions should be immutable after creation
+      allow update, delete: if false;
+    }
+
+    // Group Validation
+    function isValidGroup(data) {
+      return data.keys().hasAll(['name', 'createdAt']) &&
+             data.name is string && data.name.size() <= 100 &&
+             data.createdAt is string && data.createdAt.size() <= 100;
+    }
+
+    // Message Validation
+    function isValidMessage(data) {
+      return data.keys().hasAll(['text', 'senderId', 'senderName', 'createdAt']) &&
+             data.text is string && data.text.size() <= 2000 &&
+             data.senderId is string && data.senderId.size() <= 128 &&
+             data.senderName is string && data.senderName.size() <= 128 &&
+             data.createdAt is string && data.createdAt.size() <= 100;
+    }
+
+    match /groups/{groupId} {
+      allow read, list: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(groupId) && isValidGroup(incoming());
+      allow update, delete: if false;
+    }
+
+    match /groups/{groupId}/messages/{messageId} {
+      allow read, list: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(groupId) && isValidId(messageId) && isValidMessage(incoming()) && incoming().senderId == request.auth.uid;
+      allow update, delete: if false; // Immutable messages
+    }
+  }
+}

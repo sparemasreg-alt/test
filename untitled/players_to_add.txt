@@ -1,0 +1,101 @@
+Player Name	Nationality	Position	FC 26 Prime OVR	Level 1 (Base)	Level 2 (Mid)	Level 3 (Prime)	Level 4 (Ultimate)	Famous Club
+Pelé	Brazil	ST	99	95	97	99	102	Santos
+Diego Maradona	Argentina	CAM	98	94	96	98	101	Napoli
+Johan Cruyff	Netherlands	CF	97	93	95	97	100	Ajax
+Franz Beckenbauer	Germany	CB	96	92	94	96	99	Bayern Munich
+Alfredo Di Stéfano	Argentina/Spain	CF	96	92	94	96	99	Real Madrid
+Ferenc Puskás	Hungary	ST	96	92	94	96	99	Real Madrid
+Lev Yashin	Soviet Union	GK	96	92	94	96	99	Dynamo Moscow
+Gerd Müller	Germany	ST	95	91	93	95	98	Bayern Munich
+Eusébio	Portugal	ST	95	91	93	95	98	Benfica
+George Best	Northern Ireland	RW	95	91	93	95	98	Manchester United
+Garrincha	Brazil	RW	95	91	93	95	98	Botafogo
+Bobby Charlton	England	CAM	95	91	93	95	98	Manchester United
+Franco Baresi	Italy	CB	95	91	93	95	98	AC Milan
+Zico	Brazil	CAM	95	91	93	95	98	Flamengo
+Ruud Gullit	Netherlands	CF	95	91	93	95	98	AC Milan
+Marco van Basten	Netherlands	ST	94	90	92	94	97	AC Milan
+Lothar Matthäus	Germany	CM	94	90	92	94	97	Bayern Munich
+Giuseppe Meazza	Italy	ST	94	90	92	94	97	Inter Milan
+Bobby Moore	England	CB	93	89	91	93	96	West Ham United
+Carlos Alberto	Brazil	RB	93	89	91	93	96	Santos
+Sócrates	Brazil	CAM	93	89	91	93	96	Corinthians
+Dino Zoff	Italy	GK	93	89	91	93	96	Juventus
+Gaetano Scirea	Italy	CB	93	89	91	93	96	Juventus
+Luis Suárez Miramontes	Spain	CAM	93	89	91	93	96	Barcelona
+Paco Gento	Spain	LW	93	89	91	93	96	Real Madrid
+Josef Bican	Austria	ST	93	89	91	93	96	Slavia Prague
+Juan Alberto Schiaffino	Uruguay	CAM	93	89	91	93	96	AC Milan
+José Manuel Moreno	Argentina	AM	93	89	91	93	96	River Plate
+Elias Figueroa	Chile	CB	93	89	91	93	96	Internacional
+Sándor Kocsis	Hungary	ST	92	88	90	92	95	Barcelona
+Just Fontaine	France	ST	92	88	90	92	95	Reims
+Stanley Matthews	England	RW	92	88	90	92	95	Blackpool
+Nilton Santos	Brazil	LB	92	88	90	92	95	Botafogo
+Didi	Brazil	CM	92	88	90	92	95	Fluminense
+Gordon Banks	England	GK	92	88	90	92	95	Stoke City
+Denis Law	Scotland	ST	92	88	90	92	95	Manchester United
+Raymond Kopa	France	CAM	91	87	89	91	94	Reims
+Paolo Rossi	Italy	ST	91	87	89	91	94	Juventus
+Nándor Hidegkuti	Hungary	CF	91	87	89	91	94	MTK Budapest
+Duncan Edwards	England	CDM	91	87	89	91	94	Manchester United
+John Charles	Wales	ST	91	87	89	91	94	Juventus
+Jimmy Greaves	England	ST	91	87	89	91	94	Tottenham Hotspur
+Giacinto Facchetti	Italy	LB	91	87	89	91	94	Inter Milan
+Sandro Mazzola	Italy	CAM	91	87	89	91	94	Inter Milan
+Gigi Riva	Italy	ST	91	87	89	91	94	Cagliari
+Omar Sívori	Argentina	CF	91	87	89	91	94	Juventus
+Telmo Zarra	Spain	ST	91	87	89	91	94	Athletic Bilbao
+Dixie Dean	England	ST	91	87	89	91	94	Everton
+Tom Finney	England	LW	91	87	89	91	94	Preston North End
+Matthias Sindelar	Austria	CF	91	87	89	91	94	Austria Wien
+Zizinho	Brazil	CAM	91	87	89	91	94	Flamengo
+Ademir Marques	Brazil	ST	91	87	89	91	94	Vasco da Gama
+Obdulio Varela	Uruguay	CDM	91	87	89	91	94	Peñarol
+Adolfo Pedernera	Argentina	CF	91	87	89	91	94	River Plate
+Ángel Labruna	Argentina	ST	91	87	89	91	94	River Plate
+Amadeo Carrizo	Argentina	GK	91	87	89	91	94	River Plate
+Fritz Walter	Germany	CAM	91	87	89	91	94	Kaiserslautern
+Uwe Seeler	Germany	ST	91	87	89	91	94	Hamburger SV
+Sepp Maier	Germany	GK	91	87	89	91	94	Bayern Munich
+Paul Breitner	Germany	CM	91	87	89	91	94	Bayern Munich
+Johan Neeskens	Netherlands	CM	91	87	89	91	94	Ajax
+Nils Liedholm	Sweden	CM	91	87	89	91	94	AC Milan
+Gunnar Nordahl	Sweden	ST	91	87	89	91	94	AC Milan
+Leonidas	Brazil	ST	91	87	89	91	94	Flamengo
+Arthur Friedenreich	Brazil	ST	91	87	89	91	94	Paulistano
+Gilmar	Brazil	GK	90	86	88	90	93	Santos
+Vavá	Brazil	ST	90	86	88	90	93	Vasco da Gama
+József Bozsik	Hungary	CM	90	86	88	90	93	Budapest Honvéd
+Ladislao Kubala	Spain	ST	90	86	88	90	93	Barcelona
+Alcides Ghiggia	Uruguay	RW	90	86	88	90	93	Peñarol
+José Nasazzi	Uruguay	CB	90	86	88	90	93	Nacional
+Héctor Scarone	Uruguay	AM	90	86	88	90	93	Nacional
+Guillermo Stábile	Argentina	ST	90	86	88	90	93	Huracán
+René Houseman	Argentina	RW	90	86	88	90	93	Huracán
+Vladimir Beara	Yugoslavia	GK	90	86	88	90	93	Hajduk Split
+Rob Rensenbrink	Netherlands	LW	90	86	88	90	93	Anderlecht
+Faas Wilkes	Netherlands	ST	90	86	88	90	93	Internazionale
+Gunnar Gren	Sweden	CAM	90	86	88	90	93	AC Milan
+Teófilo Cubillas	Peru	CAM	90	86	88	90	93	Alianza Lima
+Alberto Spencer	Ecuador	ST	90	86	88	90	93	Peñarol
+Gianluca Vialli	Italy	ST	89	85	87	89	92	Juventus
+Billy Wright	England	CB	89	85	87	89	92	Wolverhampton
+Gyula Grosics	Hungary	GK	89	85	87	89	92	Budapest Honvéd
+Andreas Brehme	Germany	LB	89	85	87	89	92	Inter Milan
+Helmut Rahn	Germany	RW	89	85	87	89	92	Rot-Weiss Essen
+Kazimierz Deyna	Poland	CAM	89	85	87	89	92	Legia Warsaw
+Valeriy Voronin	Soviet Union	CDM	89	85	87	89	92	Torpedo Moscow
+Mario Zagallo	Brazil	LW	89	85	87	89	92	Botafogo
+Siniša Mihajlović	Serbia	CB	88	84	86	88	91	Lazio
+Bellini	Brazil	CB	88	84	86	88	91	Vasco da Gama
+Danny Blanchflower	Northern Ireland	CM	88	84	86	88	91	Tottenham Hotspur
+Ernst Happel	Austria	CB	88	84	86	88	91	Rapid Wien
+Antonio Rattín	Argentina	CDM	88	84	86	88	91	Boca Juniors
+Leopoldo Luque	Argentina	ST	88	84	86	88	91	River Plate
+Ladislao Mazurkiewicz	Uruguay	GK	88	84	86	88	91	Peñarol
+Karl-Heinz Schnellinger	Germany	CB	88	84	86	88	91	AC Milan
+Coen Moulijn	Netherlands	LW	88	84	86	88	91	Feyenoord
+Kurt Hamrin	Sweden	RW	88	84	86	88	91	Fiorentina
+José Luis Brown	Argentina	CB	87	83	85	87	90	Estudiantes
+Andrés Escobar	Colombia	CB	87	83	85	87	90	Atletico Nacional

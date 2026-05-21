@@ -1,0 +1,117 @@
+export const getFlagImageUrl = (nation: string) => {
+  const map: Record<string, string> = {
+    "Portugal": "pt",
+    "Egypt": "eg",
+    "Norway": "no",
+    "France": "fr",
+    "Brazil": "br",
+    "Argentina": "ar",
+    "England": "gb-eng",
+    "Belgium": "be",
+    "Poland": "pl",
+    "Saudi Arabia": "sa",
+    "Spain": "es",
+    "Netherlands": "nl",
+    "Germany": "de",
+    "Argentina/Spain": "ar", // default to Argentina for Di Stéfano
+    "Hungary": "hu",
+    "Soviet Union": "su",
+    "Northern Ireland": "gb-nir",
+    "Italy": "it",
+    "Austria": "at",
+    "Uruguay": "uy",
+    "Chile": "cl",
+    "Scotland": "gb-sct",
+    "Wales": "gb-wls",
+    "Sweden": "se",
+    "Yugoslavia": "yu",
+    "Peru": "pe",
+    "Ecuador": "ec",
+    "Serbia": "rs",
+    "Colombia": "co"
+  };
+
+  const code = map[nation];
+  if (code) return `https://flagcdn.com/w40/${code}.png`;
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(nation)}&background=random&color=fff&rounded=true&font-size=0.4`;
+};
+
+export const getClubImageUrl = (club: string) => {
+  const map: Record<string, string> = {
+    "Santos": "santosfc.com.br",
+    "Napoli": "sscnapoli.it",
+    "Ajax": "english.ajax.nl",
+    "Bayern Munich": "fcbayern.com",
+    "Real Madrid": "realmadrid.com",
+    "Dynamo Moscow": "fcdm.ru",
+    "Benfica": "slbenfica.pt",
+    "Manchester United": "manutd.com",
+    "Man United": "manutd.com",
+    "Botafogo": "botafogo.com.br",
+    "AC Milan": "acmilan.com",
+    "Flamengo": "flamengo.com.br",
+    "Inter Milan": "inter.it",
+    "West Ham United": "whufc.com",
+    "West Ham": "whufc.com",
+    "Corinthians": "corinthians.com.br",
+    "Juventus": "juventus.com",
+    "Barcelona": "fcbarcelona.com",
+    "Slavia Prague": "slavia.cz",
+    "River Plate": "cariverplate.com.ar",
+    "Internacional": "internacional.com.br",
+    "Reims": "stade-de-reims.com",
+    "Blackpool": "blackpoolfc.co.uk",
+    "Fluminense": "fluminense.com.br",
+    "Stoke City": "stokecityfc.com",
+    "MTK Budapest": "mtkbudapest.hu",
+    "Tottenham Hotspur": "tottenhamhotspur.com",
+    "Tottenham": "tottenhamhotspur.com",
+    "Cagliari": "cagliaricalcio.com",
+    "Athletic Bilbao": "athletic-club.eus",
+    "Everton": "evertonfc.com",
+    "Preston North End": "pnefc.net",
+    "Austria Wien": "fk-austria.at",
+    "Vasco da Gama": "vasco.com.br",
+    "Peñarol": "capenarol.com.uy",
+    "Kaiserslautern": "fck.de",
+    "Hamburger SV": "hsv.de",
+    "Budapest Honvéd": "honvedfc.hu",
+    "Nacional": "nacional.uy",
+    "Huracán": "cahuracan.com",
+    "Hajduk Split": "hajduk.hr",
+    "Anderlecht": "rsca.be",
+    "Internazionale": "inter.it",
+    "Alianza Lima": "clubalianzalima.com.pe",
+    "Wolverhampton": "wolves.co.uk",
+    "Rot-Weiss Essen": "rot-weiss-essen.de",
+    "Legia Warsaw": "legia.com",
+    "Torpedo Moscow": "torpedo.ru",
+    "Rapid Wien": "skrapid.at",
+    "Boca Juniors": "bocajuniors.com.ar",
+    "Estudiantes": "estudiantesdelaplata.com",
+    "Atletico Nacional": "atlnacional.com.co",
+    "Liverpool": "liverpoolfc.com",
+    "Manchester City": "mancity.com",
+    "Man City": "mancity.com",
+    "Arsenal": "arsenal.com",
+    "Chelsea": "chelseafc.com",
+    "Inter Miami": "intermiamicf.com",
+    "AS Roma": "asroma.com",
+    "Lyon": "ol.fr",
+    "Bayer Leverkusen": "bayer04.de",
+    "Al-Ahly": "alahlyegypt.com",
+    "Zamalek": "elzamalek.org",
+    "Al-Nassr": "alnassr.sa",
+    "Galatasaray": "galatasaray.org",
+    "Marseille": "om.fr",
+    "PSV": "psv.nl",
+    "Porto": "fcporto.pt",
+    "Valencia": "valenciacf.com"
+  };
+
+  const domain = map[club];
+  if (domain) {
+    return `https://logo.clearbit.com/${domain}`;
+  }
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(club)}&background=random&color=fff&rounded=true&font-size=0.4`;
+};

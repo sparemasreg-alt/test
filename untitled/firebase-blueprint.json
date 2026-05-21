@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with balance",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "coins": { "type": "number" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string" },
+        "bio": { "type": "string", "description": "User's bio" },
+        "preferredClub": { "type": "string", "description": "Preferred club" },
+        "nationality": { "type": "string", "description": "Nationality" },
+        "photoURL": { "type": "string", "description": "Base64 data URL or external URL for profile picture" },
+        "subscription": { "type": "string", "description": "Active subscription package ID" }
+      },
+      "required": ["email", "coins", "role", "createdAt"]
+    },
+    "SquadPlayer": {
+      "title": "SquadPlayer",
+      "description": "A player card owned by a user",
+      "type": "object",
+      "properties": {
+        "playerId": { "type": "string" },
+        "playerName": { "type": "string" },
+        "acquiredAt": { "type": "string" },
+        "level": { "type": "number" },
+        "overall": { "type": "number" },
+        "onAuction": { "type": "boolean" },
+        "auctionId": { "type": "string" }
+      },
+      "required": ["playerId", "playerName", "acquiredAt", "level"]
+    },
+    "Pack": {
+      "title": "Pack",
+      "description": "A purchasable pack of players",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "playerIds": { "type": "array" }
+      },
+      "required": ["name", "price", "playerIds"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Ledger of a purchase or sale",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderEmail": { "type": "string" },
+        "recipientId": { "type": "string" },
+        "recipientEmail": { "type": "string" },
+        "amount": { "type": "number" },
+        "playerId": { "type": "string" },
+        "playerName": { "type": "string" },
+        "playerLevel": { "type": "number" },
+        "participantIds": { "type": "array" },
+        "date": { "type": "string" }
+      },
+      "required": ["type", "senderId", "senderEmail", "recipientId", "recipientEmail", "amount", "participantIds", "date"]
+    },
+    "PricingPackage": {
+      "title": "PricingPackage",
+      "description": "A subscription tier with price and description",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "description": { "type": "string" },
+        "features": { "type": "array" }
+      },
+      "required": ["name", "price", "description"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A chat message in a group",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["text", "senderId", "senderName", "createdAt"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "A group for chat",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile"
+    },
+    "/users/{userId}/squad/{squadDocId}": {
+      "schema": { "$ref": "#/entities/SquadPlayer" },
+      "description": "Player cards owned by the user"
+    },
+    "/packs/{packId}": {
+      "schema": { "$ref": "#/entities/Pack" },
+      "description": "Store packs configurations"
+    },
+    "/pricing_packages/{packageId}": {
+      "schema": { "$ref": "#/entities/PricingPackage" },
+      "description": "Pricing package tiers managed by admin"
+    },
+    "/transactions/{txId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "Global transaction ledger"
+    },
+    "/groups/{groupId}": {
+      "schema": { "$ref": "#/entities/Group" },
+      "description": "Groups for chat"
+    },
+    "/groups/{groupId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Messages in the group"
+    }
+  }
+}
